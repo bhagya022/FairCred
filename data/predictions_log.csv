@@ -2,3 +2,17 @@ timestamp,mode,income_tier,employment_type,avg_payment_delay_days,pd_probability
 2026-04-09 22:49:01,demo,3,Salaried,10,0.0034,897,Low Risk,APPROVED,0
 2026-04-09 22:50:03,demo,2,Gig_Worker,0,0.1714,797,Low Risk,APPROVED,0
 2026-04-09 22:50:18,demo,2,Gig_Worker,41,0.6371,517,High Risk,REJECTED,0
+2026-04-17 00:06:58,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
+2026-04-17 00:07:13,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
+2026-04-17 00:07:24,api,3,Salaried,2.4,0.0004,899,Low Risk,APPROVED,0
+2026-04-17 00:14:11,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
+2026-04-17 00:20:43,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
+2026-04-17 00:20:50,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
+2026-04-17 00:20:56,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
+2026-04-17 00:45:46,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
+2026-04-17 00:48:43,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
+2026-04-17 00:52:39,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
+2026-04-17 00:54:33,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
+2026-04-17 00:56:26,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
+2026-04-17 00:59:16,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
+2026-04-17 00:59:31,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
