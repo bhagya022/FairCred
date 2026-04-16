@@ -1,0 +1,28 @@
+PREPROCESSED FEATURE NAMES
+================================================================================
+
+ 1. income_tier
+ 2. employment_tenure_months
+ 3. education_level
+ 4. residence_stability_years
+ 5. dependents_count
+ 6. upi_txn_frequency
+ 7. avg_payment_delay_days
+ 8. bill_payment_consistency
+ 9. spending_volatility_cv
+10. savings_ratio
+11. utility_auto_payment_flag
+12. bounce_rate_txn
+13. wallet_min_balance
+14. merchant_diversity_score
+15. app_usage_regularity_days
+16. device_stability_score
+17. ecommerce_txn_frequency
+18. recharge_regularity
+19. social_media_linked_flag
+20. kyc_completion_score
+21. loan_inquiry_count_6m
+22. existing_loan_flag
+23. insurance_ownership_flag
+24. account_age_months
+25. employment_type_encoded

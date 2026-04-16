@@ -1,0 +1,4 @@
+timestamp,mode,income_tier,employment_type,avg_payment_delay_days,pd_probability,credit_score,risk_tier,decision,issues_count
+2026-04-09 22:49:01,demo,3,Salaried,10,0.0034,897,Low Risk,APPROVED,0
+2026-04-09 22:50:03,demo,2,Gig_Worker,0,0.1714,797,Low Risk,APPROVED,0
+2026-04-09 22:50:18,demo,2,Gig_Worker,41,0.6371,517,High Risk,REJECTED,0
