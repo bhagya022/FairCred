@@ -45,11 +45,11 @@ predictor = CreditRiskPredictor()
 
 
 @app.get("/", include_in_schema=False)
-def serve_dashboard() -> FileResponse:
+def serve_dashboard():
     index = _STATIC_DIR / "index.html"
     if index.exists():
         return FileResponse(str(index))
-    return FileResponse(str(index))  # will 404 naturally if missing
+    raise HTTPException(status_code=404, detail="Dashboard UI not found")
 
 
 @app.post("/login")

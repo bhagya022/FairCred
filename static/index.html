@@ -193,15 +193,52 @@
                     <div class="card p-8 mb-10 border-t-4 border-t-primary-500">
                         <h3 class="text-2xl font-bold mb-6">Applicant Processing</h3>
                         <form id="risk-form">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 mb-8">
-                                <div><label class="input-label">Income Bracket</label><select class="input-field" id="in_in"><option value="1">Tier 1 (&lt; $20k)</option><option value="2">Tier 2 ($20k - $40k)</option><option value="3" selected>Tier 3 ($40k - $80k)</option><option value="4">Tier 4 ($80k - $120k)</option><option value="5">Tier 5 (&gt; $120k)</option></select></div>
+                            <!-- Category 1 -->
+                            <h4 class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 mt-2">1. Socio-Economic Indicators</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+                                <div><label class="input-label">Income Tier</label><select class="input-field" id="in_in"><option value="1">Tier 1 (&lt; ₹10k)</option><option value="2">Tier 2 (₹10k - ₹30k)</option><option value="3" selected>Tier 3 (₹30k - ₹60k)</option><option value="4">Tier 4 (₹60k - ₹100k)</option><option value="5">Tier 5 (&gt; ₹100k)</option></select></div>
                                 <div><label class="input-label">Employment</label><select class="input-field" id="in_em"><option value="Salaried">Salaried</option><option value="Self_Employed">Self Employed</option><option value="Gig_Worker">Gig Worker</option><option value="Student">Student</option><option value="Unemployed">Unemployed</option></select></div>
                                 <div><label class="input-label">Tenure (Months)</label><input type="number" class="input-field" id="in_te" value="102" min="0" max="600" required></div>
-                                <div><label class="input-label">Avg Delay (Days)</label><input type="number" step="0.1" class="input-field" id="in_de" value="2.4" min="0" max="90" required></div>
-                                <div><label class="input-label">UPI Txns / Mo</label><input type="number" class="input-field" id="in_up" value="142" min="0" max="500" required></div>
-                                <div><label class="input-label">Bounce Rate (0-1)</label><input type="number" step="0.01" class="input-field" id="in_bo" value="0.0" min="0" max="1" required></div>
+                                <div><label class="input-label">Education (1-5)</label><input type="number" class="input-field" id="in_ed" value="4" min="1" max="5" required></div>
+                                <div><label class="input-label">Residence (Yrs)</label><input type="number" class="input-field" id="in_rs" value="4" min="0" max="50" required></div>
+                                <div><label class="input-label">Dependents</label><input type="number" class="input-field" id="in_dc" value="1" min="0" max="10" required></div>
                             </div>
-                            <button type="submit" class="btn-primary px-8 py-3 text-lg" id="btn-assess">Run Intelligence Assessment <span class="ml-2 font-black">&rarr;</span></button>
+                            
+                            <!-- Category 2 -->
+                            <h4 class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">2. Behavioral Transactions</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+                                <div><label class="input-label">UPI Txns/Mo</label><input type="number" class="input-field" id="in_up" value="142" min="0" max="500" required></div>
+                                <div><label class="input-label">Avg Delay (Days)</label><input type="number" step="0.1" class="input-field" id="in_de" value="2.4" min="0" max="90" required></div>
+                                <div><label class="input-label">Bill Consistency</label><input type="number" step="0.01" class="input-field" id="in_bc" value="0.92" min="0" max="1" required></div>
+                                <div><label class="input-label">Spend Volatility</label><input type="number" step="0.01" class="input-field" id="in_sv" value="0.12" min="0" max="5" required></div>
+                                <div><label class="input-label">Savings Ratio</label><input type="number" step="0.01" class="input-field" id="in_sr" value="0.26" min="0" max="0.8" required></div>
+                                <div><label class="input-label">Auto-Pay Utility</label><select class="input-field" id="in_ua"><option value="1" selected>Yes</option><option value="0">No</option></select></div>
+                                <div><label class="input-label">Bounce Rate (0-1)</label><input type="number" step="0.01" class="input-field" id="in_bo" value="0.0" min="0" max="1" required></div>
+                                <div><label class="input-label">Min Wallet Bal (₹)</label><input type="number" class="input-field" id="in_wm" value="8500" min="0" max="50000" required></div>
+                                <div><label class="input-label">Merchant Diversity</label><input type="number" class="input-field" id="in_md" value="34" min="1" max="100" required></div>
+                            </div>
+
+                            <!-- Category 3 -->
+                            <h4 class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">3. Digital Footprint & Engagement</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+                                <div><label class="input-label">App Usage (Days)</label><input type="number" class="input-field" id="in_au" value="315" min="0" max="365" required></div>
+                                <div><label class="input-label">Device Stability</label><input type="number" step="0.01" class="input-field" id="in_ds" value="0.98" min="0" max="1" required></div>
+                                <div><label class="input-label">E-comm Txns/Mo</label><input type="number" class="input-field" id="in_et" value="12" min="0" max="100" required></div>
+                                <div><label class="input-label">Recharge Reg</label><input type="number" step="0.01" class="input-field" id="in_rr" value="0.88" min="0" max="1" required></div>
+                                <div><label class="input-label">Social Linked</label><select class="input-field" id="in_sm"><option value="1" selected>Yes</option><option value="0">No</option></select></div>
+                                <div><label class="input-label">KYC Completion</label><input type="number" step="0.01" class="input-field" id="in_kc" value="1.0" min="0" max="1" required></div>
+                            </div>
+
+                            <!-- Category 4 -->
+                            <h4 class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">4. Stability & Reliability Metrics</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+                                <div><label class="input-label">Loan Inquiries (6m)</label><input type="number" class="input-field" id="in_li" value="1" min="0" max="20" required></div>
+                                <div><label class="input-label">Existing Loan</label><select class="input-field" id="in_el"><option value="0" selected>No</option><option value="1">Yes</option></select></div>
+                                <div><label class="input-label">Has Insurance</label><select class="input-field" id="in_io"><option value="1" selected>Yes</option><option value="0">No</option></select></div>
+                                <div><label class="input-label">Account Age (Mos)</label><input type="number" class="input-field" id="in_aa" value="50" min="0" max="360" required></div>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary w-full py-4 text-xl shadow-lg border-2 border-primary-600" id="btn-assess">Execute Full 25-Factor Pipeline <span class="ml-2 font-black">&rarr;</span></button>
                         </form>
                     </div>
                     
@@ -400,33 +437,36 @@
             e.preventDefault();
             const btn = document.getElementById('btn-assess'); btn.disabled = true; btn.innerText = "Running Logic...";
             
-            // Add all required fields for FastAPI schema validation
+            // Map 25 exact required fields back into FastAPI payload explicitly via their HTML DOM values
             const payload = { 
                 income_tier: parseInt(document.getElementById('in_in').value), 
                 employment_type: document.getElementById('in_em').value, 
                 employment_tenure_months: parseInt(document.getElementById('in_te').value), 
-                avg_payment_delay_days: parseFloat(document.getElementById('in_de').value), 
+                education_level: parseInt(document.getElementById('in_ed').value),
+                residence_stability_years: parseInt(document.getElementById('in_rs').value),
+                dependents_count: parseInt(document.getElementById('in_dc').value),
+                
                 upi_txn_frequency: parseInt(document.getElementById('in_up').value), 
+                avg_payment_delay_days: parseFloat(document.getElementById('in_de').value), 
+                bill_payment_consistency: parseFloat(document.getElementById('in_bc').value),
+                spending_volatility_cv: parseFloat(document.getElementById('in_sv').value),
+                savings_ratio: parseFloat(document.getElementById('in_sr').value),
+                utility_auto_payment_flag: parseInt(document.getElementById('in_ua').value),
                 bounce_rate_txn: parseFloat(document.getElementById('in_bo').value),
-                education_level: 4,
-                residence_stability_years: 4,
-                dependents_count: 1,
-                bill_payment_consistency: 0.92,
-                spending_volatility_cv: 0.12,
-                savings_ratio: 0.26,
-                utility_auto_payment_flag: 1,
-                wallet_min_balance: 8500,
-                merchant_diversity_score: 34,
-                app_usage_regularity_days: 315,
-                device_stability_score: 0.98,
-                ecommerce_txn_frequency: 12,
-                recharge_regularity: 0.88,
-                social_media_linked_flag: 1,
-                kyc_completion_score: 1.0,
-                loan_inquiry_count_6m: 1,
-                existing_loan_flag: 0,
-                insurance_ownership_flag: 1,
-                account_age_months: 50
+                wallet_min_balance: parseFloat(document.getElementById('in_wm').value),
+                merchant_diversity_score: parseInt(document.getElementById('in_md').value),
+                
+                app_usage_regularity_days: parseInt(document.getElementById('in_au').value),
+                device_stability_score: parseFloat(document.getElementById('in_ds').value),
+                ecommerce_txn_frequency: parseInt(document.getElementById('in_et').value),
+                recharge_regularity: parseFloat(document.getElementById('in_rr').value),
+                social_media_linked_flag: parseInt(document.getElementById('in_sm').value),
+                kyc_completion_score: parseFloat(document.getElementById('in_kc').value),
+                
+                loan_inquiry_count_6m: parseInt(document.getElementById('in_li').value),
+                existing_loan_flag: parseInt(document.getElementById('in_el').value),
+                insurance_ownership_flag: parseInt(document.getElementById('in_io').value),
+                account_age_months: parseInt(document.getElementById('in_aa').value)
             };
             
             try {
