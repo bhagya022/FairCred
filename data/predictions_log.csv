@@ -16,3 +16,6 @@ timestamp,mode,income_tier,employment_type,avg_payment_delay_days,pd_probability
 2026-04-17 00:56:26,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
 2026-04-17 00:59:16,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
 2026-04-17 00:59:31,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
+2026-04-17 06:35:15,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
+2026-04-20 22:34:27,api,3,Salaried,0.0,0.0037,897,Low Risk,APPROVED,0
+2026-04-20 22:42:09,api,1,Unemployed,65.0,0.9996,300,High Risk,REJECTED,5
