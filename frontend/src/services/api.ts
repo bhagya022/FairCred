@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { authStore } from '../features/auth/authStore';
 
+// Dynamically target the production Render Backend URL, or fallback to local development automatically
 const api = axios.create({
-  baseURL: 'http://127.0.0.1:8000',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000',
 });
 
 // Attach the stored token to every API request dynamically
