@@ -1,14 +1,14 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 
 interface CardProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   noPadding?: boolean;
 }
 
 export function Card({ children, className = '', noPadding = false }: CardProps) {
   return (
-    <div className={`bg-slate-900 border border-slate-800 rounded-2xl shadow-xl overflow-hidden ${noPadding ? '' : 'p-6'} hover:border-slate-700/80 transition-colors ${className}`}>
+    <div className={`overflow-hidden rounded-2xl border border-stone-200 bg-stone-50/95 shadow-[0_20px_60px_rgba(120,53,15,0.08)] ${noPadding ? '' : 'p-6'} transition-colors hover:border-stone-300 ${className}`}>
       {children}
     </div>
   );

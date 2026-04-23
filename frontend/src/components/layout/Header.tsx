@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 
@@ -9,7 +9,6 @@ export function Header() {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
 
-  // Determine Page Title
   const getPageTitle = () => {
     const path = location.pathname;
     if (path.startsWith('/risk')) return 'Risk Assessment';
@@ -20,7 +19,6 @@ export function Header() {
     return 'Dashboard';
   };
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -37,48 +35,47 @@ export function Header() {
   };
 
   return (
-    <header className="h-16 border-b border-slate-800 bg-slate-900 flex items-center justify-between px-8 shrink-0 shadow-sm relative z-20">
-      
-      {/* Route Title */}
-      <h2 className="text-xl font-bold text-slate-200 tracking-wide">
+    <header className="relative z-20 flex h-16 shrink-0 items-center justify-end border-b border-stone-200 bg-stone-50/90 px-8 shadow-sm backdrop-blur">
+      <h2 className="pointer-events-none absolute left-1/2 -translate-x-1/2 text-center text-xl font-bold tracking-wide text-stone-900">
         {getPageTitle()}
       </h2>
 
-      {/* Profile & Dropdown */}
       <div className="relative" ref={dropdownRef}>
         <button
           onClick={() => setDropdownOpen(!dropdownOpen)}
-          className="flex items-center space-x-3 focus:outline-none bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-full transition-colors border border-slate-700"
+          className="flex items-center space-x-3 rounded-full border border-stone-200 bg-stone-100 px-3 py-1.5 transition-colors hover:bg-stone-200 focus:outline-none"
           aria-haspopup="true"
           aria-expanded={dropdownOpen}
         >
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-emerald-400 flex items-center justify-center text-white font-bold shadow-inner uppercase">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-tr from-amber-700 to-orange-500 font-bold uppercase text-white shadow-inner">
             {(user || 'U').charAt(0)}
           </div>
-          <span className="text-sm font-medium text-slate-200 hidden md:block">
-            {user || 'User'}
-          </span>
-          <svg className={`w-4 h-4 text-slate-400 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span className="hidden text-sm font-medium text-stone-800 md:block">{user || 'User'}</span>
+          <svg
+            className={`h-4 w-4 text-stone-500 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
 
-        {/* Dropdown Menu */}
         {dropdownOpen && (
-          <div className="absolute right-0 mt-3 w-48 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 origin-top-right animate-in fade-in zoom-in-95 duration-200">
-            <div className="px-4 py-2 border-b border-slate-700/50 mb-1">
-              <p className="text-xs text-slate-400">Signed in as</p>
-              <p className="text-sm font-bold text-slate-200 truncate">{user || 'demo'}</p>
+          <div className="absolute right-0 z-50 mt-3 w-48 origin-top-right rounded-xl border border-stone-200 bg-stone-50 py-2 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+            <div className="mb-1 border-b border-stone-200 px-4 py-2">
+              <p className="text-xs text-stone-500">Signed in as</p>
+              <p className="truncate text-sm font-bold text-stone-900">{user || 'demo'}</p>
             </div>
             <button
               onClick={() => setDropdownOpen(false)}
-              className="w-full text-left px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white transition-colors"
+              className="w-full px-4 py-2 text-left text-sm text-stone-700 transition-colors hover:bg-stone-100 hover:text-stone-900"
             >
               Account Settings
             </button>
             <button
               onClick={handleLogout}
-              className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors mt-1 border-t border-slate-700/50 pt-3"
+              className="mt-1 w-full border-t border-stone-200 px-4 pt-3 text-left text-sm text-red-700 transition-colors hover:bg-red-50 hover:text-red-800"
             >
               Sign Out
             </button>

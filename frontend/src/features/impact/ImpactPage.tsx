@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { impactService } from './impactService';
 
 export function ImpactPage() {
@@ -14,104 +14,98 @@ export function ImpactPage() {
         const data = await impactService.getEvaluation();
         if (isMounted) setReport(data);
       } catch (err: any) {
-         if (isMounted) setError(err?.message || 'Failed to fetch business level impact analytics.');
+        if (isMounted) setError(err?.message || 'Failed to fetch business level impact analytics.');
       } finally {
-         if (isMounted) setIsLoading(false);
+        if (isMounted) setIsLoading(false);
       }
     };
     fetchEval();
-    return () => { isMounted = false; };
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
-    <div className="w-full flex justify-center pb-8 animate-in fade-in slide-in-from-bottom-8 duration-500">
-      <div className="w-full max-w-7xl mx-auto space-y-6">
-        
+    <div className="flex w-full justify-center pb-8 animate-in fade-in slide-in-from-bottom-8 duration-500">
+      <div className="mx-auto w-full max-w-7xl space-y-6">
         <div className="mb-8">
-          <h2 className="text-3xl font-extrabold text-slate-200 tracking-tight">Business Impact Analysis</h2>
-          <p className="text-sm text-slate-400 mt-2">
+          <h2 className="text-3xl font-extrabold tracking-tight text-stone-900">Business Impact Analysis</h2>
+          <p className="mt-2 text-sm text-stone-600">
             Evaluating true false positive financial risk and false negative sales fallout consequences against automated precision trade-offs.
           </p>
         </div>
 
         {isLoading && (
-           <div className="w-full p-24 flex flex-col items-center gap-5 bg-slate-900 border border-slate-800 rounded-2xl shadow-xl">
-             <div className="w-12 h-12 border-4 border-slate-700 border-t-amber-500 rounded-full animate-spin"></div>
-             <p className="text-slate-400 font-semibold tracking-wide animate-pulse">Computing operational fallout matrices...</p>
-           </div>
+          <div className="flex w-full flex-col items-center gap-5 rounded-2xl border border-stone-200 bg-stone-50/95 p-24 shadow-[0_20px_60px_rgba(120,53,15,0.08)]">
+            <div className="h-12 w-12 rounded-full border-4 border-stone-300 border-t-amber-500 animate-spin" />
+            <p className="font-semibold tracking-wide text-stone-600 animate-pulse">Computing operational fallout matrices...</p>
+          </div>
         )}
 
         {error && (
-           <div className="p-5 bg-red-500/10 border border-red-500/50 rounded-xl text-red-400 shadow-inner font-medium tracking-wide">
-             ⚠️ {error}
-           </div>
+          <div className="rounded-xl border border-red-200 bg-red-50 p-5 font-medium tracking-wide text-red-700">
+            Warning: {error}
+          </div>
         )}
 
         {!isLoading && report && (
           <div className="space-y-8">
-            
-            {/* Core Classification Metrics */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-xl flex flex-col items-center justify-center text-center transform hover:scale-[1.02] transition-transform">
-                 <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Overall Precision</div>
-                 <div className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-sky-400">
-                   {(report.precision * 100).toFixed(1)}%
-                 </div>
-                 <p className="text-xs font-medium text-slate-400 mt-4">Strict adherence ratio ensuring approved users are genuinely low-risk.</p>
-              </div>
-              
-              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-xl flex flex-col items-center justify-center text-center transform hover:scale-[1.02] transition-transform">
-                 <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Model Recall</div>
-                 <div className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
-                   {(report.recall * 100).toFixed(1)}%
-                 </div>
-                 <p className="text-xs font-medium text-slate-400 mt-4">Volume capture matrix determining how many real optimal users were automatically approved.</p>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              <div className="flex transform flex-col items-center justify-center rounded-2xl border border-stone-200 bg-stone-50/95 p-8 text-center shadow-[0_20px_60px_rgba(120,53,15,0.08)] transition-transform hover:scale-[1.02]">
+                <div className="mb-2 text-xs font-bold uppercase tracking-widest text-stone-500">Overall Precision</div>
+                <div className="bg-gradient-to-r from-amber-700 to-orange-600 bg-clip-text text-6xl font-black text-transparent">
+                  {(report.precision * 100).toFixed(1)}%
+                </div>
+                <p className="mt-4 text-xs font-medium text-stone-600">Strict adherence ratio ensuring approved users are genuinely low-risk.</p>
               </div>
 
-              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-xl flex flex-col items-center justify-center text-center transform hover:scale-[1.02] transition-transform">
-                 <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">F1 Harmonic Base</div>
-                 <div className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                   {(report.f1 * 100).toFixed(1)}%
-                 </div>
-                 <p className="text-xs font-medium text-slate-400 mt-4">Harmonic baseline mean blending precision validation seamlessly with volume scale.</p>
+              <div className="flex transform flex-col items-center justify-center rounded-2xl border border-stone-200 bg-stone-50/95 p-8 text-center shadow-[0_20px_60px_rgba(120,53,15,0.08)] transition-transform hover:scale-[1.02]">
+                <div className="mb-2 text-xs font-bold uppercase tracking-widest text-stone-500">Model Recall</div>
+                <div className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-6xl font-black text-transparent">
+                  {(report.recall * 100).toFixed(1)}%
+                </div>
+                <p className="mt-4 text-xs font-medium text-stone-600">Volume capture matrix determining how many real optimal users were automatically approved.</p>
+              </div>
+
+              <div className="flex transform flex-col items-center justify-center rounded-2xl border border-stone-200 bg-stone-50/95 p-8 text-center shadow-[0_20px_60px_rgba(120,53,15,0.08)] transition-transform hover:scale-[1.02]">
+                <div className="mb-2 text-xs font-bold uppercase tracking-widest text-stone-500">F1 Harmonic Base</div>
+                <div className="bg-gradient-to-r from-stone-900 to-amber-700 bg-clip-text text-6xl font-black text-transparent">
+                  {(report.f1 * 100).toFixed(1)}%
+                </div>
+                <p className="mt-4 text-xs font-medium text-stone-600">Harmonic baseline mean blending precision validation seamlessly with volume scale.</p>
               </div>
             </div>
 
-            {/* Error Fallout Matrix */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
-              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-xl relative overflow-hidden group hover:border-red-500/50 transition-colors">
-                <div className="absolute top-0 right-0 -mr-6 -mt-6 w-48 h-48 bg-red-500/5 rounded-full blur-3xl group-hover:bg-red-500/10 transition-colors"></div>
-                <div className="flex items-start justify-between relative z-10">
-                   <div>
-                     <div className="text-sm font-black text-slate-300 uppercase tracking-widest mb-1.5">False Positives (FP)</div>
-                     <p className="text-xs text-slate-400 mb-8 max-w-[250px]">High-risk users who were incorrectly approved by the underlying neural structure.</p>
-                     
-                     <div className="text-7xl font-black text-red-500/90 tracking-tighter drop-shadow-[0_0_15px_rgba(239,68,68,0.3)]">
-                       {report.fp}
-                     </div>
-                     <div className="mt-3 inline-flex items-center gap-2 text-xs font-bold text-red-400/80 uppercase tracking-wider bg-red-500/10 px-3 py-1.5 rounded-lg border border-red-500/20">
-                       <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                       Direct Financial Credit Risk
-                     </div>
-                   </div>
+            <div className="mt-4 grid grid-cols-1 gap-8 md:grid-cols-2">
+              <div className="group relative overflow-hidden rounded-2xl border border-red-200 bg-stone-50/95 p-8 shadow-[0_20px_60px_rgba(120,53,15,0.08)] transition-colors hover:border-red-300">
+                <div className="absolute right-0 top-0 -mr-6 -mt-6 h-48 w-48 rounded-full bg-red-100 blur-3xl transition-colors group-hover:bg-red-200/70" />
+                <div className="relative z-10 flex items-start justify-between">
+                  <div>
+                    <div className="mb-1.5 text-sm font-black uppercase tracking-widest text-stone-800">False Positives (FP)</div>
+                    <p className="mb-8 max-w-[250px] text-xs text-stone-600">High-risk users who were incorrectly approved by the underlying neural structure.</p>
+
+                    <div className="text-7xl font-black tracking-tighter text-red-700">{report.fp}</div>
+                    <div className="mt-3 inline-flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-red-700">
+                      <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+                      Direct Financial Credit Risk
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-xl relative overflow-hidden group hover:border-amber-500/50 transition-colors">
-                <div className="absolute top-0 right-0 -mr-6 -mt-6 w-48 h-48 bg-amber-500/5 rounded-full blur-3xl group-hover:bg-amber-500/10 transition-colors"></div>
-                <div className="flex items-start justify-between relative z-10">
-                   <div>
-                     <div className="text-sm font-black text-slate-300 uppercase tracking-widest mb-1.5">False Negatives (FN)</div>
-                     <p className="text-xs text-slate-400 mb-8 max-w-[250px]">Low-risk highly optimal users who were incorrectly rejected natively.</p>
-                     
-                     <div className="text-7xl font-black text-amber-500/90 tracking-tighter drop-shadow-[0_0_15px_rgba(245,158,11,0.3)]">
-                       {report.fn}
-                     </div>
-                     <div className="mt-3 inline-flex items-center gap-2 text-xs font-bold text-amber-400/80 uppercase tracking-wider bg-amber-500/10 px-3 py-1.5 rounded-lg border border-amber-500/20">
-                       <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-                       Lost Revenue Volume
-                     </div>
-                   </div>
+              <div className="group relative overflow-hidden rounded-2xl border border-amber-200 bg-stone-50/95 p-8 shadow-[0_20px_60px_rgba(120,53,15,0.08)] transition-colors hover:border-amber-300">
+                <div className="absolute right-0 top-0 -mr-6 -mt-6 h-48 w-48 rounded-full bg-amber-100 blur-3xl transition-colors group-hover:bg-amber-200/70" />
+                <div className="relative z-10 flex items-start justify-between">
+                  <div>
+                    <div className="mb-1.5 text-sm font-black uppercase tracking-widest text-stone-800">False Negatives (FN)</div>
+                    <p className="mb-8 max-w-[250px] text-xs text-stone-600">Low-risk highly optimal users who were incorrectly rejected natively.</p>
+
+                    <div className="text-7xl font-black tracking-tighter text-amber-700">{report.fn}</div>
+                    <div className="mt-3 inline-flex items-center gap-2 rounded-lg border border-amber-200 bg-amber-50 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-amber-700">
+                      <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
+                      Lost Revenue Volume
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

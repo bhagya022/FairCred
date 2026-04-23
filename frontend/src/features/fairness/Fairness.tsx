@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function Fairness() {
   return (
     <div>

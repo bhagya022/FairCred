@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { historyService } from './historyService';
 
 export function HistoryPage() {
@@ -8,7 +8,7 @@ export function HistoryPage() {
 
   useEffect(() => {
     let isMounted = true;
-    
+
     const fetchLogs = async () => {
       try {
         setIsLoading(true);
@@ -20,100 +20,99 @@ export function HistoryPage() {
         if (isMounted) setIsLoading(false);
       }
     };
-    
+
     fetchLogs();
-    
+
     return () => {
       isMounted = false;
     };
   }, []);
 
   const formatDecisionColor = (decision: string) => {
-    if (!decision) return 'text-slate-400 bg-slate-800 border-slate-700';
-    if (decision === 'Approved') return 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20';
-    if (decision === 'Declined' || decision === 'Rejected') return 'text-red-400 bg-red-500/10 border-red-500/20';
-    return 'text-amber-400 bg-amber-500/10 border-amber-500/20';
+    if (!decision) return 'text-stone-700 bg-stone-100 border-stone-200';
+    if (decision === 'Approved') return 'text-emerald-700 bg-emerald-50 border-emerald-200';
+    if (decision === 'Declined' || decision === 'Rejected') return 'text-red-700 bg-red-50 border-red-200';
+    return 'text-amber-700 bg-amber-50 border-amber-200';
   };
 
   return (
-    <div className="w-full flex justify-center pb-8 animate-in fade-in duration-500">
-      <div className="w-full max-w-7xl mx-auto space-y-6">
-        
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-xl">
-          <div className="flex justify-between items-end mb-6">
+    <div className="flex w-full justify-center pb-8 animate-in fade-in duration-500">
+      <div className="mx-auto w-full max-w-7xl space-y-6">
+        <div className="rounded-2xl border border-stone-200 bg-stone-50/95 p-8 shadow-[0_20px_60px_rgba(120,53,15,0.08)]">
+          <div className="mb-6 flex items-end justify-between">
             <div>
-              <h2 className="text-3xl font-extrabold text-slate-200 tracking-tight">System Audit Logs</h2>
-              <p className="text-sm text-slate-400 mt-2">
+              <h2 className="text-3xl font-extrabold tracking-tight text-stone-900">System Audit Logs</h2>
+              <p className="mt-2 text-sm text-stone-600">
                 Decentralized snapshot tracking of the last 50 predictive assessments hitting the core decision engine.
               </p>
             </div>
             {isLoading && (
-              <div className="flex items-center gap-3 text-emerald-400 font-medium px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-xl shadow-inner">
-                <div className="w-4 h-4 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin"></div>
+              <div className="flex items-center gap-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2 font-medium text-emerald-700 shadow-inner">
+                <div className="h-4 w-4 rounded-full border-2 border-emerald-500 border-t-transparent animate-spin" />
                 Syncing Network...
               </div>
             )}
           </div>
 
           {error && (
-            <div className="mb-6 p-4 bg-red-500/10 border border-red-500/50 rounded-xl text-red-400 shadow-inner font-medium">
-              ⚠️ {error}
+            <div className="mb-6 rounded-xl border border-red-200 bg-red-50 p-4 font-medium text-red-700 shadow-inner">
+              Warning: {error}
             </div>
           )}
 
-          <div className="overflow-x-auto rounded-xl border border-slate-800 shadow-2xl relative">
-            <table className="w-full text-left border-collapse whitespace-nowrap">
+          <div className="relative overflow-x-auto rounded-xl border border-stone-200 shadow-lg">
+            <table className="w-full whitespace-nowrap border-collapse text-left">
               <thead className="sticky top-0 z-10 w-full">
-                <tr className="bg-slate-950 uppercase text-[10px] tracking-widest text-slate-500 border-b border-slate-800">
+                <tr className="border-b border-stone-200 bg-stone-100 uppercase text-[10px] tracking-widest text-stone-500">
                   <th className="p-5 font-bold">Timestamp</th>
                   <th className="p-5 font-bold">Mode</th>
                   <th className="p-5 font-bold">Tier</th>
                   <th className="p-5 font-bold">Score</th>
                   <th className="p-5 font-bold">PD %</th>
                   <th className="p-5 font-bold">Income Level</th>
-                  <th className="p-5 font-bold text-center">Issues</th>
-                  <th className="p-5 font-bold text-right">Decision Engine</th>
+                  <th className="p-5 text-center font-bold">Issues</th>
+                  <th className="p-5 text-right font-bold">Decision Engine</th>
                 </tr>
               </thead>
-              
-              <tbody className="divide-y divide-slate-800/60 text-sm">
+
+              <tbody className="divide-y divide-stone-200 text-sm">
                 {!isLoading && logs.length === 0 && !error && (
                   <tr>
                     <td colSpan={8} className="p-16 text-center">
-                      <div className="flex flex-col items-center justify-center space-y-3 opacity-60">
-                        <span className="text-5xl">📭</span>
-                        <span className="text-slate-400 font-semibold tracking-wide">No predictive logs found in the core database.</span>
+                      <div className="flex flex-col items-center justify-center space-y-3 opacity-70">
+                        <span className="text-stone-500 font-semibold tracking-wide">
+                          No predictive logs found in the core database.
+                        </span>
                       </div>
                     </td>
                   </tr>
                 )}
-                
+
                 {logs.map((log, i) => (
-                  <tr key={i} className="hover:bg-slate-800/40 transition-colors group">
-                     {/* Using proper React Maps instead of InnerHTML */}
-                    <td className="p-5 text-slate-400 font-mono text-xs">{log.timestamp}</td>
+                  <tr key={i} className="group transition-colors hover:bg-stone-100/80">
+                    <td className="p-5 font-mono text-xs text-stone-600">{log.timestamp}</td>
                     <td className="p-5">
-                      <span className="bg-slate-800 text-slate-300 px-2 py-1 rounded text-xs tracking-wider uppercase">
-                         {log.mode}
+                      <span className="rounded bg-stone-100 px-2 py-1 text-xs uppercase tracking-wider text-stone-700">
+                        {log.mode}
                       </span>
                     </td>
-                    <td className="p-5 text-slate-200 font-bold">{log.risk_tier}</td>
-                    <td className="p-5 font-mono text-lg font-black text-slate-300">{log.credit_score}</td>
-                    <td className="p-5 font-mono font-medium text-slate-400">
+                    <td className="p-5 font-bold text-stone-900">{log.risk_tier}</td>
+                    <td className="p-5 font-mono text-lg font-black text-stone-800">{log.credit_score}</td>
+                    <td className="p-5 font-mono font-medium text-stone-600">
                       {log.pd_probability !== undefined && log.pd_probability !== null ? (log.pd_probability * 100).toFixed(2) + '%' : '-'}
                     </td>
-                    <td className="p-5 text-slate-400">{log.income_tier ? `Tier ${log.income_tier}` : '-'}</td>
+                    <td className="p-5 text-stone-600">{log.income_tier ? `Tier ${log.income_tier}` : '-'}</td>
                     <td className="p-5 text-center">
                       {log.issues_count > 0 ? (
-                        <span className="px-3 py-1.5 bg-amber-500/10 border border-amber-500/30 text-amber-500 rounded-lg text-xs font-black font-mono shadow-[0_0_10px_rgba(245,158,11,0.15)]">
+                        <span className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-1.5 font-mono text-xs font-black text-amber-700">
                           {log.issues_count}
                         </span>
                       ) : (
-                        <span className="text-slate-600">-</span>
+                        <span className="text-stone-400">-</span>
                       )}
                     </td>
                     <td className="p-5 text-right">
-                      <span className={`px-4 py-2 rounded-xl text-xs font-bold border transition-colors shadow-sm tracking-wide ${formatDecisionColor(log.decision)}`}>
+                      <span className={`rounded-xl border px-4 py-2 text-xs font-bold tracking-wide shadow-sm transition-colors ${formatDecisionColor(log.decision)}`}>
                         {log.decision || 'N/A'}
                       </span>
                     </td>

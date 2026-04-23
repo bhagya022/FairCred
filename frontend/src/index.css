@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    background:
+      radial-gradient(circle at top, rgba(245, 158, 11, 0.08), transparent 28%),
+      linear-gradient(180deg, #fcfaf6 0%, #f6efe6 100%);
+  }
+
+  body {
+    color: #2f241d;
+    background: transparent;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  }
+}
+
 body {
   margin: 0;
   display: flex;

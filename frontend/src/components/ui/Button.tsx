@@ -1,6 +1,6 @@
-import React from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
   isLoading?: boolean;
 }
@@ -11,16 +11,16 @@ export function Button({ variant = 'primary', isLoading, children, className = '
   let variantStyle = "";
   switch (variant) {
     case 'primary':
-      variantStyle = "bg-gradient-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-white shadow-blue-500/20";
+      variantStyle = "bg-gradient-to-r from-amber-700 to-orange-600 hover:from-amber-600 hover:to-orange-500 text-white shadow-amber-900/20";
       break;
     case 'secondary':
-      variantStyle = "bg-slate-800 text-slate-200 hover:bg-slate-700 border border-slate-700";
+      variantStyle = "bg-stone-100 text-stone-800 hover:bg-stone-200 border border-stone-200";
       break;
     case 'danger':
-      variantStyle = "bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/20";
+      variantStyle = "bg-red-50 text-red-700 hover:bg-red-100 border border-red-200";
       break;
     case 'ghost':
-      variantStyle = "bg-transparent text-slate-400 hover:bg-slate-800 hover:text-slate-200 shadow-none";
+      variantStyle = "bg-transparent text-stone-600 hover:bg-stone-100 hover:text-stone-900 shadow-none";
       break;
   }
 

@@ -1,6 +1,6 @@
-import React from 'react';
+import type { InputHTMLAttributes } from 'react';
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
 }
@@ -9,16 +9,16 @@ export function Input({ label, error, className = '', ...props }: InputProps) {
   return (
     <div className="flex flex-col w-full">
       {label && (
-        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5 truncate">
+        <label className="mb-1.5 truncate text-[10px] font-bold uppercase tracking-widest text-stone-600">
           {label}
         </label>
       )}
       <input
-        className={`px-4 py-2.5 bg-slate-950 border ${error ? 'border-red-500/50 focus:ring-red-500/30' : 'border-slate-800 focus:ring-sky-500/50 focus:border-sky-500/50'} rounded-xl text-slate-200 focus:outline-none focus:ring-2 transition-colors shadow-inner font-mono text-sm disabled:opacity-50 placeholder-slate-700 ${className}`}
+        className={`rounded-xl border px-4 py-2.5 font-mono text-sm text-stone-900 shadow-inner transition-colors focus:outline-none focus:ring-2 disabled:opacity-50 ${error ? 'border-red-300 bg-red-50/40 focus:ring-red-200' : 'border-stone-300 bg-stone-100 focus:border-amber-400 focus:ring-amber-200'} placeholder-stone-400 ${className}`}
         {...props}
       />
       {error && (
-        <span className="text-xs text-red-400 font-medium mt-1.5 px-1">{error}</span>
+        <span className="mt-1.5 px-1 text-xs font-medium text-red-700">{error}</span>
       )}
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { RiskForm } from './RiskForm';
 import { RiskResults } from './RiskResults';
 import { riskService } from './riskService';
@@ -14,11 +14,11 @@ export function RiskPage() {
     setError(null);
     setPrediction(null);
     setExplanation(null);
-    
+
     try {
       const predResponse = await riskService.predict(formData);
       const explResponse = await riskService.explain(formData);
-      
+
       setPrediction(predResponse);
       setExplanation(explResponse);
     } catch (err: any) {
@@ -31,29 +31,23 @@ export function RiskPage() {
   };
 
   return (
-    <div className="w-full flex flex-col items-center gap-8 pb-8 animate-in fade-in duration-500">
-      
-      {/* Dynamic Error Messaging strictly governed by state */}
+    <div className="flex w-full flex-col items-center gap-8 pb-8 animate-in fade-in duration-500">
       {error && (
-        <div className="w-full max-w-7xl mx-auto p-4 bg-red-500/10 border border-red-500/50 rounded-xl text-red-400 font-medium">
-          ⚠️ {error}
+        <div className="mx-auto w-full max-w-7xl rounded-xl border border-red-200 bg-red-50 p-4 font-medium text-red-700">
+          Warning: {error}
         </div>
       )}
 
-      {/* Presentation layer decouples state processing from DOM rendering */}
       <RiskForm onSubmit={handleSubmit} isLoading={isLoading} />
-      
+
       {isLoading && (
-        <div className="w-full max-w-7xl mx-auto p-12 flex flex-col items-center justify-center space-y-4">
-          <div className="w-12 h-12 border-4 border-slate-700 border-t-emerald-500 rounded-full animate-spin"></div>
-          <p className="text-slate-400 font-medium animate-pulse">Running advanced machine learning inferences...</p>
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center space-y-4 p-12">
+          <div className="h-12 w-12 rounded-full border-4 border-stone-300 border-t-emerald-500 animate-spin" />
+          <p className="font-medium text-stone-600 animate-pulse">Running advanced machine learning inferences...</p>
         </div>
       )}
 
-      {/* Conditionally drops in upon resolution without DOM manipulation */}
-      {!isLoading && prediction && explanation && (
-        <RiskResults prediction={prediction} explanation={explanation} />
-      )}
+      {!isLoading && prediction && explanation && <RiskResults prediction={prediction} explanation={explanation} />}
     </div>
   );
 }

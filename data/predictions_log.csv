@@ -19,3 +19,10 @@ timestamp,mode,income_tier,employment_type,avg_payment_delay_days,pd_probability
 2026-04-17 06:35:15,api,3,Salaried,2.4,0.0002,899,Low Risk,APPROVED,0
 2026-04-20 22:34:27,api,3,Salaried,0.0,0.0037,897,Low Risk,APPROVED,0
 2026-04-20 22:42:09,api,1,Unemployed,65.0,0.9996,300,High Risk,REJECTED,5
+2026-04-23 12:15:16,api,3,Salaried,2.0,0.0017,898,Low Risk,APPROVED,0
+2026-04-23 13:21:27,api,3,Salaried,5.0,0.005,897,Low Risk,APPROVED,0
+2026-04-23 13:38:26,api,3,Gig_Worker,40.0,0.9779,313,High Risk,REJECTED,1
+2026-04-23 13:54:38,api,3,Gig_Worker,0.0,0.1527,808,Low Risk,APPROVED,0
+2026-04-23 13:55:39,api,3,Gig_Worker,0.0,0.5559,566,High Risk,REJECTED,1
+2026-04-23 22:25:50,api,3,Salaried,5.0,0.005,897,Low Risk,APPROVED,0
+2026-04-23 22:47:29,api,3,Salaried,5.0,0.005,897,Low Risk,APPROVED,0

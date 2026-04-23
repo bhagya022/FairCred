@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { type FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import { useAuth } from '../../hooks/useAuth';
@@ -14,7 +14,7 @@ export function LoginPage() {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
     setLoading(true);
@@ -39,41 +39,43 @@ export function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-950 p-4">
-      <Card className="w-full max-w-sm p-8 relative border-slate-800/80 shadow-2xl">
-        <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 bg-sky-500/10 rounded-full blur-3xl"></div>
+    <div className="flex min-h-screen items-center justify-center bg-stone-100 p-4">
+      <Card className="relative w-full max-w-sm border-stone-200 p-8 shadow-2xl">
+        <div className="absolute right-0 top-0 -mr-16 -mt-16 h-48 w-48 rounded-full bg-amber-300/20 blur-3xl" />
         <div className="relative z-10">
           <div className="mb-10 text-center">
-            <h1 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-sky-400 tracking-tight">FairCred AI</h1>
-            <p className="text-slate-400 mt-2 text-[11px] font-bold uppercase tracking-widest">Authentication Protocol</p>
+            <h1 className="bg-gradient-to-r from-amber-700 to-stone-900 bg-clip-text text-3xl font-black tracking-tight text-transparent">
+              FairCred AI
+            </h1>
+            <p className="mt-2 text-[11px] font-bold uppercase tracking-widest text-stone-600">Authentication Protocol</p>
           </div>
-          
+
           <form onSubmit={handleLogin} className="space-y-6">
-            <Input 
-               label="System Identifier"
-               type="text" 
-               value={username} 
-               onChange={(e) => setUsername(e.target.value)} 
-               placeholder="admin" 
-               autoComplete="username"
-               required 
+            <Input
+              label="System Identifier"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="admin"
+              autoComplete="username"
+              required
             />
-            <Input 
-               label="Access Credential"
-               type="password" 
-               value={password} 
-               onChange={(e) => setPassword(e.target.value)} 
-               placeholder="••••••••" 
-               autoComplete="current-password"
-               required 
+            <Input
+              label="Access Credential"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="********"
+              autoComplete="current-password"
+              required
             />
-            
+
             {errorMsg && (
-              <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs text-center font-bold tracking-wide">
-                ⚠️ {errorMsg}
+              <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-center text-xs font-bold tracking-wide text-red-700">
+                Warning: {errorMsg}
               </div>
             )}
-            
+
             <div className="pt-2">
               <Button type="submit" isLoading={loading} className="w-full py-3.5">
                 Execute Validation
